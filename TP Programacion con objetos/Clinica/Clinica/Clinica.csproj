@@ -49,7 +49,6 @@
     <Compile Include="Consulta.cs" />
     <Compile Include="MedicoClinico.cs" />
     <Compile Include="Paciente.cs" />
-    <Compile Include="Persona.cs" />
     <Compile Include="Profesional.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
