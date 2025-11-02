@@ -20,14 +20,16 @@ namespace Clinica
 	/// </summary>
 	public class Consulta
 	{
-		public tipo_consulta tipo;
-		public prioridad_medica prioridad;
 		public Paciente paciente;
 		public Profesional profesional;
+		public tipo_consulta tipo;
+		public prioridad_medica prioridad;
 		public decimal costo;
+		public DateTime fecha;
 		
 		public Consulta()
 		{
+			costo = Profesional.
 		}
 	}
 }

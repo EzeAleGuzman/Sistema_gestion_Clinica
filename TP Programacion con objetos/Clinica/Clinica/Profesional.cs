@@ -30,7 +30,10 @@ namespace Clinica
 		{		
 		}
 		
-		public virtual 
+		public abstract Calcularcosto()
+		{
+			
+		}
 		
 	}
 }
