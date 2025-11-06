@@ -11,15 +11,15 @@ using System;
 namespace Clinica
 {
 	/// <summary>
-	/// Description of MedicoClinico.
+	/// Description of Especialista.
 	/// </summary>
-	public class MedicoClinico
+	public class Especialista
 	{
 		
-		public double honorarios = 5000;
-		public int maxPacientesDia = 10;
+		public double honorarios = 8500;
+		public int maxPacientesDia = 6;
 		
-		public MedicoClinico()
+		public Especialista()
 		{
 		}
 	}

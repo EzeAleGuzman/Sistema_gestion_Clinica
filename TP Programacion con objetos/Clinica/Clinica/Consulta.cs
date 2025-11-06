@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 namespace Clinica
 {
-	#Defino las constantes de tipos de consultas
+	//Defino las constantes de tipos de consultas
 	public enum tipo_consulta
 	{
 		Generica,
@@ -25,11 +25,11 @@ namespace Clinica
 		public tipo_consulta tipo;
 		public prioridad_medica prioridad;
 		public decimal costo;
+		public int duracion;
 		public DateTime fecha;
 		
 		public Consulta()
 		{
-			costo = Profesional.
 		}
 	}
 }

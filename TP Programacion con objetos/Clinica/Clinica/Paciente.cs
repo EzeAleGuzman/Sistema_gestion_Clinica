@@ -26,13 +26,13 @@ namespace Clinica
 			consultasPendientes = new List<Consulta>();
 		}
 		
-		#El metodo Puede mostrar los 2 tipos de consulta(Podriamos reutilizarlo en profesionales y llevarlo a un archivo de utilidades????
-		public void MostrarHistorialConsultas(List listaConsultas)
+		//El metodo Puede mostrar los 2 tipos de consulta(Podriamos reutilizarlo en profesionales y llevarlo a un archivo de utilidades????
+		/*public void MostrarHistorialConsultas(List<Consulta> listaConsultas)
 		{
-			foreach (consulta in listaConsultas)
+			foreach (Consulta consulta in listaConsultas)
 			{
-				MostrarConsulta(consulta)
+				return
 			}
-		}
+		}*/
 	}
 }

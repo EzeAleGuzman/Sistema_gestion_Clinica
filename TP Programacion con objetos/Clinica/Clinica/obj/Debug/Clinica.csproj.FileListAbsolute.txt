@@ -3,3 +3,8 @@ C:\Users\ezeal\OneDrive\Documentos\SharpDevelop Projects\Clinica\Clinica\bin\Deb
 C:\Users\ezeal\OneDrive\Documentos\SharpDevelop Projects\Clinica\Clinica\bin\Debug\Clinica.pdb
 C:\Users\ezeal\OneDrive\Documentos\SharpDevelop Projects\Clinica\Clinica\obj\Debug\Clinica.exe
 C:\Users\ezeal\OneDrive\Documentos\SharpDevelop Projects\Clinica\Clinica\obj\Debug\Clinica.pdb
+A:\POO\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.exe
+A:\POO\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb
+A:\POO\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.csprojResolveAssemblyReference.cache
+A:\POO\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
+A:\POO\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb

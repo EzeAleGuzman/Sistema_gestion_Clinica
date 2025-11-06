@@ -9,19 +9,22 @@ namespace Clinica
 	public  abstract class Profesional
 	{
 		public int id;
+		public string nombre;
+		public Area area;
 		public List<Consulta> historialConsultas;
-		public List<Consulta> consultas Pendientes;
+		public List<Consulta> consultasPendientes;
 		
 		
-		public Profesional(int dni, string nombreCompleto, DateTime fechaNacimiento, int id):base(dni, nombreCompleto, fechaNacimiento)
+		public Profesional(int id,string nombre,Area area)
 		{
 			this.id = id;
+			this.nombre = nombre;
 			historialConsultas = new List<Consulta>();
 			consultasPendientes = new List<Consulta>();
 		}
 		
 		//se encargara de en las clases hijas agregar las consultas en estado realizado
-		public abstract void agregarConsulta(Consulta consulta)
+		/*public abstract void agregarConsulta(Consulta consulta)
 		{			
 		}
 		
@@ -30,10 +33,10 @@ namespace Clinica
 		{		
 		}
 		
-		public abstract Calcularcosto()
+		public abstract double Calcularcosto()
 		{
-			
-		}
+		
+		}*/
 		
 	}
 }

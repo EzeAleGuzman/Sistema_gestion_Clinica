@@ -2,7 +2,7 @@
  * Created by SharpDevelop.
  * User: Sarabe89
  * Date: 6/11/2025
- * Time: 08:14
+ * Time: 08:15
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -11,15 +11,13 @@ using System;
 namespace Clinica
 {
 	/// <summary>
-	/// Description of MedicoClinico.
+	/// Description of Emergentologo.
 	/// </summary>
-	public class MedicoClinico
+	public class Emergentologo
 	{
-		
-		public double honorarios = 5000;
-		public int maxPacientesDia = 10;
-		
-		public MedicoClinico()
+		public double honorarios = 10000;
+		public int maxPacientesDia = 8;
+		public Emergentologo()
 		{
 		}
 	}

@@ -14,9 +14,7 @@ namespace Clinica
 	{
 		public static void Main(string[] args)
 		{
-			Persona ezequiel = new Persona(34931575,"Guzman Ezequiel",new DateTime(2026,10,19));
-			
-			Console.WriteLine(ezequiel.CalcularEdad());
+			ManejoArchivos msj = new ManejoArchivos();
 			
 			// TODO: Implement Functionality Here
 			

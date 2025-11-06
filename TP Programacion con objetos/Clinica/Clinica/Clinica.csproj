@@ -46,7 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Area.cs" />
+    <Compile Include="Clinica.cs" />
     <Compile Include="Consulta.cs" />
+    <Compile Include="Emergentologo.cs" />
+    <Compile Include="Especialista.cs" />
+    <Compile Include="ManejoArchivos.cs" />
     <Compile Include="MedicoClinico.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Profesional.cs" />
