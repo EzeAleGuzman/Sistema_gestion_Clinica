@@ -12,8 +12,16 @@ namespace Clinica
 		public int id;
 		public string nombre;
 		public List<Profesional> profesionales;
+		
 		public Area()
 		{
+		}
+		
+		public Area(int id, string nombre)
+		{
+			this.id = id;
+			this.nombre = nombre;
+			this.profesionales = new List<Profesional>();
 		}
 		
 		

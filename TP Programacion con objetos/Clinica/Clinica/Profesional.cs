@@ -25,7 +25,8 @@ namespace Clinica
 		
 		//se encargara de en las clases hijas agregar las consultas en estado realizado
 		/*public abstract void agregarConsulta(Consulta consulta)
-		{			
+		{	
+
 		}
 		
 		//agregara las consultas a estado pendiente

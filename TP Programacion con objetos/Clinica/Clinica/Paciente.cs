@@ -18,6 +18,7 @@ namespace Clinica
 		
 		public Paciente(string nombreCompleto,int DNI, int edad,string obraSocial)
 		{
+			this.nombreCompleto = nombreCompleto;
 			this.edad = edad;
 			this.DNI = DNI;
 			this.edad = edad;
@@ -25,6 +26,8 @@ namespace Clinica
 			historialConsultas = new List<Consulta>();
 			consultasPendientes = new List<Consulta>();
 		}
+		
+		
 		
 		//El metodo Puede mostrar los 2 tipos de consulta(Podriamos reutilizarlo en profesionales y llevarlo a un archivo de utilidades????
 		/*public void MostrarHistorialConsultas(List<Consulta> listaConsultas)

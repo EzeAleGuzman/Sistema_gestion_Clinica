@@ -14,7 +14,7 @@ namespace Clinica
 	{
 		public static void Main(string[] args)
 		{
-			ManejoArchivos msj = new ManejoArchivos();
+		
 			
 			// TODO: Implement Functionality Here
 			
