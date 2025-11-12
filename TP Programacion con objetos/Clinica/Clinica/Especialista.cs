@@ -31,7 +31,17 @@ namespace Clinica
 			AgregarProfesional(archivo);
 		}
 
-		
+		public override void AtenderPacientes(Consulta consulta){
+			if (listadoConsultasPendientes.count < 7) {
+				listadoConsultasPendientes.Add(consulta)
+			}
+			else {
+				Console.WriteLine("Se ha alcanzado el máximo de pacientes a atender por parte de este profesional");
+			}
+
+		public override double Calcularcosto() {
+			return listadoConsultasPendientes.count * honorarios;
+		}
 
 		public override  void AgregarProfesional(ManejoArchivos archivo)
 		{

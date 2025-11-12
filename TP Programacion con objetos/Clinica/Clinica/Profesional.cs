@@ -32,5 +32,9 @@ namespace Clinica
 		
 		public abstract  void AgregarProfesional(ManejoArchivos archivo);
 		
+		public abstract void AtenderPacientes(Consulta consulta);
+		
+		public abstract double Calcularcosto();
+		
 	}
 }
