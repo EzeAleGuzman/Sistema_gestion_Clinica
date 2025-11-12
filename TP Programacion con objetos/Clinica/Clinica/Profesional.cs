@@ -6,38 +6,30 @@ namespace Clinica
 	/// <summary>
 	/// Description of Profesional.
 	/// </summary>
-	public  abstract class Profesional
+	public abstract class Profesional
 	{
 		public int id;
 		public string nombre;
-		public Area area;
-		public List<Consulta> historialConsultas;
-		public List<Consulta> consultasPendientes;
+		public List<Consulta> listadoConsultasPendientes;
+		public List<Consulta> listadoAtencion;
 		
 		
-		public Profesional(int id,string nombre,Area area)
+		public Profesional(int id,string nombre)
 		{
 			this.id = id;
 			this.nombre = nombre;
-			historialConsultas = new List<Consulta>();
-			consultasPendientes = new List<Consulta>();
+			listadoConsultasPendientes = new List<Consulta>();
+			listadoAtencion = new List<Consulta>();
 		}
 		
 		//se encargara de en las clases hijas agregar las consultas en estado realizado
-		/*public abstract void agregarConsulta(Consulta consulta)
-		{	
-
-		}
-		
-		//agregara las consultas a estado pendiente
-		public abstract void agregarPendientes(Consulta consulta)
+		/*
+		public abstract void AtenderPacientes(Consulta consulta)
 		{		
+			listadoConsultasPendientes.Add(consulta);
 		}
 		
-		public abstract double Calcularcosto()
-		{
-		
-		}*/
+		public abstract double Calcularcosto();*/
 		
 	}
 }
