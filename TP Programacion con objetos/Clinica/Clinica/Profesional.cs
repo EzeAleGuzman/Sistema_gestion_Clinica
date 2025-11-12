@@ -8,15 +8,14 @@ namespace Clinica
 	/// </summary>
 	public abstract class Profesional
 	{
-		public int id;
+		
 		public string nombre;
 		public List<Consulta> listadoConsultasPendientes;
 		public List<Consulta> listadoAtencion;
 		
 		
-		public Profesional(int id,string nombre)
+		public Profesional(string nombre)
 		{
-			this.id = id;
 			this.nombre = nombre;
 			listadoConsultasPendientes = new List<Consulta>();
 			listadoAtencion = new List<Consulta>();
@@ -30,6 +29,8 @@ namespace Clinica
 		}
 		
 		public abstract double Calcularcosto();*/
+		
+		public abstract  void AgregarProfesional(ManejoArchivos archivo);
 		
 	}
 }

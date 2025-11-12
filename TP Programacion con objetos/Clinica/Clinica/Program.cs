@@ -15,7 +15,8 @@ namespace Clinica
 		public static void Main(string[] args)
 		{
 		
-			
+			ManejoArchivos archivos = new ManejoArchivos();
+			Especialista nuevo = new Especialista("Juan Perez", archivos);
 			// TODO: Implement Functionality Here
 			
 			Console.Write("Press any key to continue . . . ");

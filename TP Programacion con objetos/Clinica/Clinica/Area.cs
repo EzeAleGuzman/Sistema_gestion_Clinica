@@ -28,14 +28,14 @@ namespace Clinica
 		}
 
 		public void AgregarProfesionalArea(Profesional profesional){
-			profesionales.add(profesiona);
+			profesionales.Add(profesional);
 		}
 
 		public void EliminarProfesional(Profesional profesional){
-			profesionales.delete(profesional);
+			profesionales.Remove(profesional);
 		}
 
-		public void MostrarProfesionales(){
+		/*public void MostrarProfesionales(){
 			try{
 				if (profesionales == null) {
 					throw new Exception();
@@ -56,7 +56,7 @@ namespace Clinica
             {
 				Console.WriteLine(n.Message);
             }
-		}
+		}*/
 	}
 
 

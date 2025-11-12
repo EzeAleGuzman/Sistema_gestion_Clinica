@@ -55,7 +55,7 @@ namespace Clinica
                    }
             using (StreamWriter sw = File.CreateText(areas))
                    {
-                   		sw.WriteLine("Id;Nombre");
+                   		sw.WriteLine("Id;Nombre;");
                    }                   
             using (StreamWriter sw = File.CreateText(consultas))
 		           {
@@ -86,7 +86,31 @@ namespace Clinica
         }
         
 		
-		
+        //Esta funcion se utiliza para generar los id automaticos para los metodos de creacion de los objetos 
+        public int GenerarId(string path)
+        	
+        {
+        	//verifica si el archivo existe
+        	if (!File.Exists(path))
+        	{
+        		throw new FileNotFoundException("No se encontro el Archivo");
+        	}
+        	
+        	string[] lineas = File.ReadAllLines(path);
+        	
+        	//si solo esta el encabezado el id va a ser 1
+        	if (lineas.Length <=1)
+        	{
+        		return 1;
+        	}
+        	
+        	//Lee la cantidad de filas que trae del archivo y le descuenta 1 para darle el valor al proximo ID
+        	string ultimaLinea = lineas[lineas.Length-1];
+   			string[] campos = ultimaLinea.Split(';');
+
+    		int ultimoId = int.Parse(campos[0]);
+   			return ultimoId + 1;
+        }
         
 		}
 	}
