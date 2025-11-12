@@ -13,16 +13,49 @@ namespace Clinica
 	/// <summary>
 	/// Description of Emergentologo.
 	/// </summary>
-	//public class Emergentologo:Profesional
-	//{
-	//	public double honorarios = 10000;
-	//	public int maxPacientesDia = 8;
-	//		
-	//	public Emergentologo(int id, string nombre, double honorarios, int maxPacientesDia):base(Id, nombre)
-	//	{
-	//		this.honorarios = honorarios;
-	//		this.maxPacientesDia = maxPacientesDia;
-	//	}
+	public class Emergentologo:Profesional
+	{
+	public int Id;
+		public double honorarios = 10000;
+		public int maxPacientesDia = 8;
+		public string tipo = "emergentologo";
+		
+	
 
-	//}
+		
+		public Especialista( string nombre, ManejoArchivos archivo):base(nombre)
+		{	
+			string basePath = AppDomain.CurrentDomain.BaseDirectory;
+			string projectPath = Path.Combine(basePath, @"..\..");
+			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
+			//Genera el Id por medio de la funcion generadorA
+			Id = archivo.GenerarId(path);
+			AgregarProfesional(archivo);
+		}
+
+		public override void AtenderPacientes(Consulta consulta){
+			if (listadoConsultasPendientes.count < 9) {
+				listadoConsultasPendientes.Add(consulta)
+			}
+			else {
+				Console.WriteLine("Se ha alcanzado el máximo de pacientes a atender por parte de este profesional");
+			}
+
+		public override double Calcularcosto() {
+			return listadoConsultasPendientes.count * honorarios;
+		}
+
+			//funcion para almacenarlo en la base de datos
+		public override  void AgregarProfesional(ManejoArchivos archivo)
+		{
+			string basePath = AppDomain.CurrentDomain.BaseDirectory;
+			string projectPath = Path.Combine(basePath, @"..\..");
+			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
+			string nuevaLinea = string.Format("{0};{1};{2};{3};{4}", Id, nombre, tipo, honorarios, maxPacientesDia);
+			File.AppendAllText(path, Environment.NewLine + nuevaLinea);
+			Console.WriteLine("Objeto Almacenado en base de datos");
+		}
+	}
+
+	}
 }
