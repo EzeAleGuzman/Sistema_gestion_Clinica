@@ -13,7 +13,7 @@ namespace Clinica
 	/// <summary>
 	/// Description of Emergentologo.
 	/// </summary>
-	public class Emergentologo
+	public class Emergentologo:Profesional
 	{
 		public double honorarios = 10000;
 		public int maxPacientesDia = 8;
