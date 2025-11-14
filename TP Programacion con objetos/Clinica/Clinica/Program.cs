@@ -14,9 +14,12 @@ namespace Clinica
 	{
 		public static void Main(string[] args)
 		{
-		
+			
 			ManejoArchivos archivos = new ManejoArchivos();
-			Especialista nuevo = new Especialista("Juan Perez", archivos);
+			Especialista esp = new Especialista("Jorge",archivos);
+			Clinica cli = new Clinica(archivos);
+			cli.MostrarPacientes(cli.pacientes);
+			
 			// TODO: Implement Functionality Here
 			
 			Console.Write("Press any key to continue . . . ");
