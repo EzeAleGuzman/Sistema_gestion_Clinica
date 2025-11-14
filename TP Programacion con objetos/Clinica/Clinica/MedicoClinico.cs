@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Clinica
 {
@@ -21,30 +23,32 @@ namespace Clinica
 		public int maxPacientesDia = 10;
 		public string tipo = "clinico";
 		
-		public Especialista( string nombre, ManejoArchivos archivo):base(nombre)
+		public MedicoClinico( string nombre, ManejoArchivos archivo, bool guardar = true):base(nombre)
 		{	
 			string basePath = AppDomain.CurrentDomain.BaseDirectory;
 			string projectPath = Path.Combine(basePath, @"..\..");
 			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
 			//Genera el Id por medio de la funcion generadorA
 			Id = archivo.GenerarId(path);
-			AgregarProfesional(archivo);
+			if (guardar)
+				AgregarProfesionalBD(archivo);
 		}
 
 		public override void AtenderPacientes(Consulta consulta){
-			if (listadoConsultasPendientes.count < 11) {
-				listadoConsultasPendientes.Add(consulta)
+			if (listadoConsultasPendientes.Count < 11) {
+				listadoConsultasPendientes.Add(consulta);
 			}
 			else {
 				Console.WriteLine("Se ha alcanzado el máximo de pacientes a atender por parte de este profesional");
 			}
+		}
 
 		public override double Calcularcosto() {
-			return listadoConsultasPendientes.count * honorarios;
+			return listadoConsultasPendientes.Count * honorarios;
 		}
 
 			//funcion para almacenarlo en la base de datos
-		public override  void AgregarProfesional(ManejoArchivos archivo)
+		public override  void AgregarProfesionalBD(ManejoArchivos archivo)
 		{
 			string basePath = AppDomain.CurrentDomain.BaseDirectory;
 			string projectPath = Path.Combine(basePath, @"..\..");

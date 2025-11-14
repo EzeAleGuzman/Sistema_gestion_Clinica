@@ -47,7 +47,7 @@ namespace Clinica
             using (StreamWriter sw = File.CreateText(pacientes))
                    {
                    		//Creo Los Encabezados del Archivo de Pacientes
-                   		sw.WriteLine("DNI;NombreCompleto;Edad;ObraSocial");
+                   		sw.WriteLine("NombreCompleto;DNI;Edad;ObraSocial");
                    }
             using (StreamWriter sw = File.CreateText(profesionales))
                    {
