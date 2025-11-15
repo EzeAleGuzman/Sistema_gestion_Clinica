@@ -16,12 +16,13 @@ namespace Clinica
 		{
 			
 			ManejoArchivos archivos = new ManejoArchivos();
-			Paciente p1 = new Paciente("Guzman Ezequiel", 34931575, 26,"IOMA",archivos);
 			Clinica cli = new Clinica(archivos);
 			cli.MostrarProfesionales(cli.profesionales);
+			Area urgencias = new Area("Urgencias",archivos);
+			cli.MostrarAreas(cli.areas);
 			
 			
-			// TODO: Implement Functionality Here
+			//  Implement Functionality Here
 			
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);

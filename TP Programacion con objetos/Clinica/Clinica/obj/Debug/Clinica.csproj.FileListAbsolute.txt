@@ -8,3 +8,8 @@ A:\POO\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb
 A:\POO\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.csprojResolveAssemblyReference.cache
 A:\POO\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
 A:\POO\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb
+C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.exe
+C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
+C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb
+C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb

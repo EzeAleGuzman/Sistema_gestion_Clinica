@@ -20,8 +20,8 @@ namespace Clinica
 		
 		public List<Paciente> pacientes;
 	    public List<Profesional> profesionales;
-	    /*public List<Area> areas 
-	    public List<Consulta> consultas*/ 
+	    public List<Area> areas;
+	    /*public List<Consulta> consultas*/ 
 
     	private ManejoArchivos archivos;
 		
@@ -31,6 +31,8 @@ namespace Clinica
 			
 			pacientes = CargarPacientes();
 			profesionales = CargarProfesionales();
+			areas = CargarAreas();
+			
 		}
 		
 		//Metodos gestionar lista de pacientes
@@ -69,8 +71,7 @@ namespace Clinica
 				Console.WriteLine("No hay pacientes en la base de datos");
 			}
 		}
-		
-		
+				
 		//Metodos Gestion Lista Profesionales
 		public List<Profesional> CargarProfesionales()
 		{
@@ -119,6 +120,39 @@ namespace Clinica
 			if (pacientes.Count < 1)
 			{
 				Console.WriteLine("No hay profesionales en la base de datos");
+			}
+		}
+		
+		
+		public List<Area> CargarAreas()
+		{
+			var lista = new List<Area>();
+		    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+			string projectPath = Path.Combine(basePath, @"..\..");
+			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Areas.csv"));
+		    var filas = archivos.LeerCsv(path);
+		
+		    foreach (var f in filas)
+		    {
+		        lista.Add(new Area(
+		            nombre: f[1],
+		            archivo: archivos,
+		           	guardar: false
+		        ));
+		    }
+		
+		    return lista;
+		}
+		
+		public void MostrarAreas(List<Area> areas)
+		{
+			foreach (Area area in areas)
+			{
+				Console.WriteLine(area);
+			}
+			if (pacientes.Count < 1)
+			{
+				Console.WriteLine("No hay Areas en la base de datos");
 			}
 		}
 		
