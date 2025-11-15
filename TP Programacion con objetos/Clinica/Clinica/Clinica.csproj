@@ -50,9 +50,7 @@
     <Compile Include="Consulta.cs" />
     <Compile Include="Emergentologo.cs" />
     <Compile Include="Especialista.cs" />
-    <Compile Include="ManejoArchivos.cs">
-      <DependentUpon>Especialista.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ManejoArchivos.cs" />
     <Compile Include="MedicoClinico.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Profesional.cs" />
