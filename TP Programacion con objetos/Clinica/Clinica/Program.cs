@@ -16,9 +16,10 @@ namespace Clinica
 		{
 			
 			ManejoArchivos archivos = new ManejoArchivos();
-			Especialista esp = new Especialista("Jorge",archivos);
+			Paciente p1 = new Paciente("Guzman Ezequiel", 34931575, 26,"IOMA",archivos);
 			Clinica cli = new Clinica(archivos);
-			cli.MostrarPacientes(cli.pacientes);
+			cli.MostrarProfesionales(cli.profesionales);
+			
 			
 			// TODO: Implement Functionality Here
 			

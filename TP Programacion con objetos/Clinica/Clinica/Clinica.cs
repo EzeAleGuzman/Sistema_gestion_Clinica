@@ -19,8 +19,8 @@ namespace Clinica
 	{
 		
 		public List<Paciente> pacientes;
-	    /*public List<Profesional> profesionales 
-	    public List<Area> areas 
+	    public List<Profesional> profesionales;
+	    /*public List<Area> areas 
 	    public List<Consulta> consultas*/ 
 
     	private ManejoArchivos archivos;
@@ -30,8 +30,10 @@ namespace Clinica
 			this.archivos = archivos;
 			
 			pacientes = CargarPacientes();
+			profesionales = CargarProfesionales();
 		}
 		
+		//Metodos gestionar lista de pacientes
 		private List<Paciente> CargarPacientes()
 		{
 		    var lista = new List<Paciente>();
@@ -68,6 +70,57 @@ namespace Clinica
 			}
 		}
 		
+		
+		//Metodos Gestion Lista Profesionales
+		public List<Profesional> CargarProfesionales()
+		{
+			 var lista = new List<Profesional>();
+		    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+			string projectPath = Path.Combine(basePath, @"..\..");
+			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
+		    var filas = archivos.LeerCsv(path);
+		
+		    foreach (var f in filas)
+		    {
+		    	//Dependiendo el tipo de profesional invoco a distinto constructor
+		    	if (f[2] == "espacialista")
+		    	{
+		    		lista.Add(new Especialista(
+		    			nombre : f[1],
+		    			archivo: archivos,
+		    			guardar: false));
+		    	}
+		    	else if (f[2] == "emergentologo")
+		    	{
+		    		lista.Add(new Emergentologo(
+		    			nombre : f[1],
+		    			archivo: archivos,
+		    			guardar: false));
+		    	}
+		    	else 
+		    	{
+		    		lista.Add(new MedicoClinico(
+		    			nombre : f[1],
+		    			archivo: archivos,
+		    			guardar: false));
+		    	}
+		    }
+		
+		    return lista;
+		}
+		
+		public void MostrarProfesionales(List<Profesional> profesionales)
+		{
+			foreach (Profesional p in profesionales)
+			{
+				
+				Console.WriteLine(p);
+			}
+			if (pacientes.Count < 1)
+			{
+				Console.WriteLine("No hay profesionales en la base de datos");
+			}
+		}
 		
 		public void BuscarPaciente(List<Paciente> list, int DNI)
 		{

@@ -8,7 +8,6 @@ namespace Clinica
 	/// </summary>
 	public abstract class Profesional
 	{
-		
 		public string nombre;
 		public List<Consulta> listadoConsultasPendientes;
 		public List<Consulta> listadoAtencion;

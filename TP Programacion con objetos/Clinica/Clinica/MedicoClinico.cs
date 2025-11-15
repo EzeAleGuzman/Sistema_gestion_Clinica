@@ -46,6 +46,12 @@ namespace Clinica
 		public override double Calcularcosto() {
 			return listadoConsultasPendientes.Count * honorarios;
 		}
+		
+		//Para poder visualizar la clase
+		public override string ToString()
+		{
+			return string.Format("Profesional \n Nombre={0}\n honorarios={1}\n maxPacientesDia={2}\n Especialidad={3}\n ", nombre, honorarios, maxPacientesDia, tipo);
+		}
 
 			//funcion para almacenarlo en la base de datos
 		public override  void AgregarProfesionalBD(ManejoArchivos archivo)
