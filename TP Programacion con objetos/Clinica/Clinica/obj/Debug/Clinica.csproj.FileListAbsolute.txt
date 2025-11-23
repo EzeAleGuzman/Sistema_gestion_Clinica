@@ -13,3 +13,8 @@ C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos
 C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
 C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb
 C:\Users\Admin\Desktop\POOTP\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb
+D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.csprojResolveAssemblyReference.cache
+D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.exe
+D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
+D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb
+D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb

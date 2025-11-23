@@ -10,81 +10,337 @@ using System;
 
 namespace Clinica
 {
-	class Program
-	{
+class Program
+{
 
-		public static void opciones_menu()
-		{
-			Console.WriteLine("Por favor, ingrese el número de la opción correspondiente para continuar");
-			Console.WriteLine("1. Agregar nuevo paciente");
-			Console.WriteLine("2. Buscar paciente");
-			Console.WriteLine("3. Mostrar el historial del paciente");
-			Console.WriteLine("4. Crear un nuevo médico clínico");
-			Console.WriteLine("5. Crear un nuevo médico emergentólogo");
-			Console.WriteLine("6. Crear un nuevo especialista");
-			Console.WriteLine("7. Simular día de trabajo");
-			Console.WriteLine("8. Salir del sistema");
-		}
+	// Revisa el valor para revisar si es valido (lo hice mas que nada por el null)
+    static int RevisarOpcion()
+    {
+        while (true)
+        {
+            string input = Console.ReadLine();
+            int n;
 
-		public static void opcion1()
-		{
-			string nombre;
-			int dni;
-			int edad;
-			string coberturaSalud;
-			Console.WriteLine("Por favor, ingrese el nombre del paciente");
-			nombre = Console.ReadLine();
-			Console.WriteLine("Por favor, ingrese el dni del paciente");
-			dni = Convert.toInt32(Console.ReadLine());
-			Console.WriteLine("Por favor, ingrese la edad del paciente");
-			edad = Convert.ToInt32(Console.ReadLine());
-			Console.WriteLine("Por favor, ingrese la cobertura de salud del paciente");
-			coberturaSalud = Console.ReadLine();
-			paciente p1 = new Paciente(nombre, dni, edad, coberturaSalud);
-		}
-		
-		public static void Main(string[] args)
-		{
-			
-			ManejoArchivos archivos = new ManejoArchivos();
-			Clinica cli = new Clinica(archivos);
-			cli.MostrarProfesionales(cli.profesionales);
+            if (int.TryParse(input, out n))
+                return n;
 
-			Area urgencias = new Area("Urgencias",archivos);
-			cli.MostrarAreas(cli.areas);
-			
+            Console.WriteLine("Opción inválida. Ingrese un número:");
+        }
+    }
 
 
-			while (opcion_seleccionada != 8)
-			{
-				opciones_menu();
-				opcion_seleccionada = Convert.ToInt32(Console.ReadLine());
-				switch(opcion_seleccionada)
-				{
-					case 1: opcion1();
-					break;
-					case 2: opcion2();
-					break;
-					case 3: opcion3();
-					break;
-					case 4: opcion4();
-					break;
-					case 5: opcion5();
-					break;
-					case 6: opcion6();
-					break;
-					case 7: opcion7();
-					break;
-					default: Console.WriteLine("No es una opción válida");
-					break;
-				}
-			}
+    //Vista de los menus
 
-			
-			//  Implement Functionality Here
-			
-			Console.Write("Press any key to continue . . . ");
-			Console.ReadKey(true);
-		}
-	}
+
+    public static void MenuPrincipal()
+    {
+        Console.WriteLine("========= MENÚ PRINCIPAL =========");
+        Console.WriteLine("1. Paciente");
+        Console.WriteLine("2. Profesional");
+        Console.WriteLine("3. Área");
+        Console.WriteLine("4. Simular día");
+        Console.WriteLine("5. Salir\n");
+        Console.Write("Seleccione una opción: ");
+    }
+
+    public static void MenuPaciente()
+    {
+        Console.WriteLine("====== MENÚ PACIENTES ======");
+        Console.WriteLine("1. Buscar paciente");
+        Console.WriteLine("2. Agregar paciente");
+        Console.WriteLine("3. Eliminar paciente");
+        Console.WriteLine("4. Volver");
+        Console.Write("Seleccione una opción: ");
+    }
+
+    public static void MenuProfesional()
+    {
+        Console.WriteLine("====== MENÚ PROFESIONALES ======");
+        Console.WriteLine("1. Buscar profesional");
+        Console.WriteLine("2. Agregar profesional");
+        Console.WriteLine("3. Eliminar profesional");
+        Console.WriteLine("4. Volver");
+        Console.Write("Seleccione una opción: ");
+    }
+
+    public static void MenuArea()
+    {
+        Console.WriteLine("====== MENÚ ÁREAS ======");
+        Console.WriteLine("1. Buscar área");
+        Console.WriteLine("2. Agregar área");
+        Console.WriteLine("3. Eliminar área");
+        Console.WriteLine("4. Volver");
+        Console.Write("Seleccione una opción: ");
+    }
+
+
+    // submenus
+    
+    public static void SubMenuPaciente()
+    {
+        Console.WriteLine("====== SUBMENÚ DEL PACIENTE ======");
+        Console.WriteLine("1. Ver historial");
+        Console.WriteLine("2. Ver turnos");
+        Console.WriteLine("3. Volver");
+        Console.Write("Seleccione una opción: ");
+    }
+
+    public static void SubMenuMedico()
+    {
+        Console.WriteLine("====== SUBMENÚ DEL PROFESIONAL ======");
+        Console.WriteLine("1. Ver agenda");
+        Console.WriteLine("2. Ver pacientes asignados");
+        Console.WriteLine("3. Volver");
+        Console.Write("Seleccione una opción: ");
+    }
+
+    public static void SubMenuArea()
+    {
+        Console.WriteLine("====== SUBMENÚ DEL ÁREA ======");
+        Console.WriteLine("1. Listar turnos");
+        Console.WriteLine("2. Listar médicos");
+        Console.WriteLine("3. Volver");
+        Console.Write("Seleccione una opción: ");
+    }
+
+
+   //PACIENTE--------------------------------------------------------------------------------- 
+    public static void MenuPacientes()
+    {
+        int op = 0;
+        while (op != 4)
+        {
+            Console.Clear();
+            MenuPaciente();
+            op = RevisarOpcion();
+
+            switch (op)
+            {
+                case 1: 
+            		BuscarPaciente(); 
+            		break;
+                case 2: 
+            		Console.WriteLine("Agregando paciente...");
+                	break;
+                case 3: 
+                	Console.WriteLine("Eliminando paciente..."); 
+                	break;
+                case 4: 
+                	return;
+                default: 
+                	Console.WriteLine("Opción inválida"); 
+                	break;
+            }
+
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+    
+    
+	
+    public static void BuscarPaciente()
+    {
+        Console.Write("Ingrese DNI del paciente: ");
+        string dni = Console.ReadLine();
+
+        // pasiente test
+        bool encontrado = dni == "123";
+
+        if (!encontrado)
+        {
+            Console.WriteLine("❌ No existe un paciente con ese DNI.");
+            return;
+        }
+
+        Console.WriteLine("\nPaciente encontrado:");
+        Console.WriteLine("Nombre: Juan Pérez");
+        Console.WriteLine("Edad: 35\n");
+
+        // Mostrar submenu
+        int op = 0;
+        while (op != 3)
+        {
+            SubMenuPaciente();
+            op = RevisarOpcion();
+
+            switch (op)
+            {
+                case 1: Console.WriteLine("Mostrando historial..."); break;
+                case 2: Console.WriteLine("Mostrando turnos..."); break;
+                case 3: return;
+                default: Console.WriteLine("Opción inválida"); break;
+            }
+
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+
+
+
+    //PROFESIONAL---------------------------------------------------------------
+    public static void MenuProfesionales()
+    {
+        int op = 0;
+        while (op != 4)
+        {
+            Console.Clear();
+            MenuProfesional();
+            op = RevisarOpcion();
+
+            switch (op)
+            {
+                case 1: BuscarProfesional(); break;
+                case 2: Console.WriteLine("Agregando profesional..."); break;
+                case 3: Console.WriteLine("Eliminando profesional..."); break;
+                case 4: return;
+                default: Console.WriteLine("Opción inválida"); break;
+            }
+
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+
+    public static void BuscarProfesional()
+    {
+        Console.Write("Ingrese id del profesional: ");
+        string mat = Console.ReadLine();
+        
+        
+		//Profesional test
+        bool encontrado = mat == "777";
+
+        if (!encontrado)
+        {
+            Console.WriteLine("No existe un profesional con esa matrícula.");
+            return;
+        }
+
+        Console.WriteLine("\nProfesional encontrado:");
+        Console.WriteLine("Nombre: Dra. Ana Torres");
+        Console.WriteLine("Especialidad: Pediatría\n");
+
+        int op = 0;
+        while (op != 3)
+        {
+            SubMenuMedico();
+            op = RevisarOpcion();
+
+            switch (op)
+            {
+                case 1: Console.WriteLine("Mostrando agenda..."); break;
+                case 2: Console.WriteLine("Mostrando pacientes..."); break;
+                case 3: return;
+                default: Console.WriteLine("Opción inválida"); break;
+            }
+
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+
+
+
+    ///ÁREA--------------------------------------------------------------------------
+    public static void MenuAreas()
+    {
+        int op = 0;
+
+        while (op != 4)
+        {
+            Console.Clear();
+            MenuArea();
+            op = RevisarOpcion();
+
+            switch (op)
+            {
+                case 1: BuscarArea(); break;
+                case 2: Console.WriteLine("Agregando área..."); break;
+                case 3: Console.WriteLine("Eliminando área..."); break;
+                case 4: return;
+                default: Console.WriteLine("Opción inválida"); break;
+            }
+
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+
+    public static void BuscarArea()
+    {
+        Console.Write("Ingrese nombre del área: ");
+        string area = Console.ReadLine().ToLower();
+
+        //area test 
+        bool encontrada = area == "123";
+
+        if (!encontrada)
+        {
+            Console.WriteLine("No existe un área con ese id.");
+            return;
+        }
+
+        Console.WriteLine("\nÁrea encontrada:");
+        Console.WriteLine("Nombre: Odotologia");
+        Console.WriteLine("Cantidad de médicos: 6\n");
+
+        int op = 0;
+        while (op != 3)
+        {
+            SubMenuArea();
+            op = RevisarOpcion();
+
+            switch (op)
+            {
+                case 1: Console.WriteLine("Mostrando turnos..."); break;
+                case 2: Console.WriteLine("Mostrando médicos..."); break;
+                case 3: return;
+                default: Console.WriteLine("Opción inválida"); break;
+            }
+
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
+        }
+    }
+
+
+  
+    
+    //main
+    public static void Main(string[] args)
+    {
+        int opcion = 0;
+
+        while (opcion != 5)
+        {
+            Console.Clear();
+            MenuPrincipal();
+            opcion = RevisarOpcion();
+
+            switch (opcion)
+            {
+                case 1: 
+            		MenuPacientes(); 
+            		break;
+                case 2: 
+            		MenuProfesionales(); 
+            		break;
+                case 3: 
+            		MenuAreas(); 
+            		break;
+                case 4: 
+            		Console.WriteLine("Simulando día..."); 
+            		Console.ReadKey(); break;
+                case 5: 
+            		Console.WriteLine("Saliendo..."); 
+            		break;
+                default: 
+            		Console.WriteLine("Opción inválida"); 
+            		break;
+            }
+        }
+    }
+}
 }
