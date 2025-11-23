@@ -141,15 +141,15 @@ class Program
 	
     public static void BuscarPaciente()
     {
-        Console.Write("Ingrese DNI del paciente: ");
-        string dni = Console.ReadLine();
+        Console.Write("Ingrese id del paciente: ");
+        string id = Console.ReadLine();
 
         // pasiente test
-        bool encontrado = dni == "123";
+        bool encontrado = id == "123";
 
         if (!encontrado)
         {
-            Console.WriteLine("❌ No existe un paciente con ese DNI.");
+            Console.WriteLine("No existe un paciente con ese id.");
             return;
         }
 
@@ -206,15 +206,15 @@ class Program
     public static void BuscarProfesional()
     {
         Console.Write("Ingrese id del profesional: ");
-        string mat = Console.ReadLine();
+        string id = Console.ReadLine();
         
         
 		//Profesional test
-        bool encontrado = mat == "777";
+        bool encontrado = id == "123";
 
         if (!encontrado)
         {
-            Console.WriteLine("No existe un profesional con esa matrícula.");
+            Console.WriteLine("No existe un profesional con esa id.");
             return;
         }
 
@@ -270,11 +270,11 @@ class Program
 
     public static void BuscarArea()
     {
-        Console.Write("Ingrese nombre del área: ");
-        string area = Console.ReadLine().ToLower();
+        Console.Write("Ingrese id del área: ");
+        string id = Console.ReadLine().ToLower();
 
         //area test 
-        bool encontrada = area == "123";
+        bool encontrada = id == "123";
 
         if (!encontrada)
         {
