@@ -146,11 +146,11 @@ namespace Clinica
 		    return lista;
 		}
 		
-		public void MostrarAreas(List<Area> areas)
+		public void MostrarAreas()
 		{
-			foreach (Area area in areas)
+			foreach (Area area in CargarAreas())
 			{
-				Console.WriteLine(area);
+				Console.WriteLine(area.getNombre());
 			}
 			if (pacientes.Count < 1)
 			{

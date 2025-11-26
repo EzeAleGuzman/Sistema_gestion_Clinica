@@ -73,7 +73,8 @@ class Program
         Console.WriteLine("1. Buscar área");
         Console.WriteLine("2. Agregar área");
         Console.WriteLine("3. Eliminar área");
-        Console.WriteLine("4. Volver");
+        Console.WriteLine("4. Ver areas");
+        Console.WriteLine("5. Volver");
         Console.Write("Seleccione una opción: ");
     }
 
@@ -101,9 +102,9 @@ class Program
     public static void SubMenuArea()
     {
         Console.WriteLine("====== SUBMENÚ DEL ÁREA ======");
-        Console.WriteLine("1. Listar turnos");
-        Console.WriteLine("2. Listar médicos");
-        Console.WriteLine("3. Volver");
+        Console.WriteLine("1. Ver turnos");
+        Console.WriteLine("2. Ver médicos");
+        Console.WriteLine("4. Volver");
         Console.Write("Seleccione una opción: ");
     }
 
@@ -271,10 +272,17 @@ class Program
 
             switch (op)
             {
-                case 1: Console.WriteLine("Mostrando agenda..."); break;
-                case 2: Console.WriteLine("Mostrando pacientes..."); break;
-                case 3: return;
-                default: Console.WriteLine("Opción inválida"); break;
+                case 1: 
+            		Console.WriteLine("Mostrando agenda..."); 
+            		break;
+                case 2: 
+            		Console.WriteLine("Mostrando pacientes...");
+            		break;
+                case 3: 
+            		return;
+                default: 
+            		Console.WriteLine("Opción inválida"); 
+            		break;
             }
 
             Console.WriteLine("\nPresione una tecla para continuar...");
@@ -297,11 +305,24 @@ class Program
 
             switch (op)
             {
-                case 1: BuscarArea(); break;
-                case 2: Console.WriteLine("Agregando área..."); break;
-                case 3: Console.WriteLine("Eliminando área..."); break;
-                case 4: return;
-                default: Console.WriteLine("Opción inválida"); break;
+                case 1: 
+            		BuscarArea(); 
+            		break;
+                case 2: 
+            		Console.WriteLine("Agregando área..."); 
+            		break;
+                case 3: 
+            		Console.WriteLine("Eliminando área..."); 
+            		break;
+                case 4: 
+            		Console.WriteLine("Las areas de la clinica son:");
+						cli.MostrarAreas();            		
+            		break;
+                case 5: 
+            		return;
+                default: 
+            		Console.WriteLine("Opción inválida"); 
+            		break;
             }
 
             Console.WriteLine("\nPresione una tecla para continuar...");

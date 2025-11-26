@@ -14,6 +14,9 @@ namespace Clinica
 		public string nombre;
 		public List<Profesional> profesionales;
 		
+		  public String getNombre(){
+            	return nombre;
+            }
 		
 		
 		public Area( string nombre,ManejoArchivos archivo, bool guardar = true)
@@ -75,6 +78,7 @@ namespace Clinica
             {
 				Console.WriteLine(n.Message);
             }
+            
 		}
 	}
 

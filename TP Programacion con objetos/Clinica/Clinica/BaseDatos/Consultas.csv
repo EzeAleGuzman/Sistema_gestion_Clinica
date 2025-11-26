@@ -1,1 +1,11 @@
 DNI;IdProfesional;TipoConsulta;Prioridad;Duracion;Costo;Fecha;Estado
+48201934;1;Odontologia;true;30;4500;20/05/2025;false
+39548210;3;Cirugia;false;60;12000;20/05/2025;true
+51372940;2;Odontologia;true;20;3000;20/05/2025;false
+40283719;4;Psicologia;true;45;6500;20/05/2025;false
+36749281;1;Odontologia;false;40;5000;20/05/2025;true
+48201934;3;Cirugia;true;90;15000;20/05/2025;false
+39548210;2;Odontologia;false;25;3500;20/05/2025;false
+51372940;4;Psicologia;true;50;6000;20/05/2025;true
+40283719;1;Odontologia;true;35;4800;20/05/2025;false
+36749281;2;Pediatria;false;15;2800;20/05/2025;false

@@ -18,3 +18,8 @@ D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Cl
 D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
 D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb
 D:\Proyectos Java\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb
+C:\Users\Admin\Documents\GitHub\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.exe
+C:\Users\Admin\Documents\GitHub\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\bin\Debug\Clinica.pdb
+C:\Users\Admin\Documents\GitHub\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.exe
+C:\Users\Admin\Documents\GitHub\Sistema_gestion_Clinica\TP Programacion con objetos\Clinica\Clinica\obj\Debug\Clinica.pdb
