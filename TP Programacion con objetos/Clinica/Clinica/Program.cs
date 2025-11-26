@@ -309,14 +309,15 @@ class Program
             		BuscarArea(); 
             		break;
                 case 2: 
-            		Console.WriteLine("Agregando área..."); 
+            		Console.WriteLine("Agregando área...");
+            		
             		break;
                 case 3: 
             		Console.WriteLine("Eliminando área..."); 
             		break;
                 case 4: 
             		Console.WriteLine("Las areas de la clinica son:");
-						cli.MostrarAreas();            		
+					cli.MostrarAreas();            		
             		break;
                 case 5: 
             		return;

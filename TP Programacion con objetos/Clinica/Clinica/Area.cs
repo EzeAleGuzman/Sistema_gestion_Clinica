@@ -32,7 +32,7 @@ namespace Clinica
 				AgregarArealBD(archivo);
 		}
 		
-		public  void AgregarArealBD(ManejoArchivos archivo)
+		public void AgregarArealBD(ManejoArchivos archivo)
 		{
 			string basePath = AppDomain.CurrentDomain.BaseDirectory;
 			string projectPath = Path.Combine(basePath, @"..\..");

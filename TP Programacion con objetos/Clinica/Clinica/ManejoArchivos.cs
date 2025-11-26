@@ -85,6 +85,17 @@ namespace Clinica
 	        return lineas;     	
         }
         
+        
+        //agregrar al registro generico
+        public void AgregarRegistro(string path, string registro)
+    	{
+        	using (StreamWriter sw = File.AppendText(path))
+        	{
+            sw.WriteLine(registro);
+        	}
+   		}
+        
+        
 		
         //Esta funcion se utiliza para generar los id automaticos para los metodos de creacion de los objetos 
         public int GenerarId(string path)
