@@ -12,7 +12,10 @@ namespace Clinica
 {
 class Program
 {
-
+	
+	static ManejoArchivos archivos= new ManejoArchivos();
+	static Clinica cli = new Clinica(archivos);
+	
 	// Revisa el valor para revisar si es valido (lo hice mas que nada por el null)
     static int RevisarOpcion()
     {
@@ -49,7 +52,8 @@ class Program
         Console.WriteLine("1. Buscar paciente");
         Console.WriteLine("2. Agregar paciente");
         Console.WriteLine("3. Eliminar paciente");
-        Console.WriteLine("4. Volver");
+        Console.WriteLine("4. Ver Listado de pacientes");
+        Console.WriteLine("5. Volver");
         Console.Write("Seleccione una opción: ");
     }
 
@@ -108,7 +112,7 @@ class Program
     public static void MenuPacientes()
     {
         int op = 0;
-        while (op != 4)
+        while (op != 5)
         {
             Console.Clear();
             MenuPaciente();
@@ -120,12 +124,15 @@ class Program
             		BuscarPaciente(); 
             		break;
                 case 2: 
-            		Console.WriteLine("Agregando paciente...");
+            		AgregarPaciente();
                 	break;
                 case 3: 
                 	Console.WriteLine("Eliminando paciente..."); 
                 	break;
-                case 4: 
+                case 4:
+                	VerListaPacientes();
+                	break;
+                case 5: 
                 	return;
                 default: 
                 	Console.WriteLine("Opción inválida"); 
@@ -141,44 +148,78 @@ class Program
 	
     public static void BuscarPaciente()
     {
-        Console.Write("Ingrese id del paciente: ");
-        string id = Console.ReadLine();
-
-        // pasiente test
-        bool encontrado = id == "123";
-
-        if (!encontrado)
+        Console.Write("Ingrese DNI del paciente: ");
+        int dni = int.Parse(Console.ReadLine());
+        foreach (Paciente p in cli.pacientes)
         {
-            Console.WriteLine("No existe un paciente con ese id.");
-            return;
+        	if (p.DNI == dni)
+        	{	
+        		Console.WriteLine(p);
+        		   // Mostrar submenu
+		        int op = 0;
+		        while (op != 3)
+		        {
+		            SubMenuPaciente();
+		            op = RevisarOpcion();
+		
+		            switch (op)
+		            {
+		                case 1: Console.WriteLine("Mostrando historial..."); break;
+		                case 2: Console.WriteLine("Mostrando turnos..."); break;
+		                case 3: return;
+		                default: Console.WriteLine("Opción inválida"); break;
+		            }
+		
+		            
+        		}
+        	}
+        	else
+        		Console.WriteLine("No EXiste este paciente en la base de datos");
         }
 
-        Console.WriteLine("\nPaciente encontrado:");
-        Console.WriteLine("Nombre: Juan Pérez");
-        Console.WriteLine("Edad: 35\n");
+		Console.WriteLine("\nPresione una tecla para continuar...");
+		Console.ReadKey();
+        
 
-        // Mostrar submenu
-        int op = 0;
-        while (op != 3)
-        {
-            SubMenuPaciente();
-            op = RevisarOpcion();
-
-            switch (op)
-            {
-                case 1: Console.WriteLine("Mostrando historial..."); break;
-                case 2: Console.WriteLine("Mostrando turnos..."); break;
-                case 3: return;
-                default: Console.WriteLine("Opción inválida"); break;
-            }
-
-            Console.WriteLine("\nPresione una tecla para continuar...");
-            Console.ReadKey();
-        }
+     
     }
 
+    public static void AgregarPaciente()
+    {
+    	Console.WriteLine("ingrese el nombre completo");
+    	string nombrecompleto = Console.ReadLine();
+    	Console.WriteLine("ingrese DNI");
+    	int DNI = int.Parse(Console.ReadLine());
+    	Console.WriteLine("ingrese edad");
+    	int edad = int.Parse(Console.ReadLine());
+    	Console.WriteLine("ingrese Obra Social");
+    	string obrasocial = Console.ReadLine();
+    	Paciente p = new Paciente(nombrecompleto,DNI,edad,obrasocial,archivos);
+    	cli.pacientes.Add(p);
+    	
+    }
 
-
+    public static void VerListaPacientes()
+    {
+    	foreach (Paciente p in cli.pacientes)
+    	{
+    		Console.WriteLine(p);
+    	}
+    }
+    
+    public static void EliminarPaciente()
+    {
+    	Console.WriteLine("Ingrese Dni del paciente a eliminar");
+    	int dni = int.Parse(Console.ReadLine());
+    	
+    	foreach (Paciente p in cli.pacientes)
+    	{
+    		if (p.DNI == dni)
+    		{
+    			cli.pacientes.Remove(p);
+    		}
+    	}
+    }
     //PROFESIONAL---------------------------------------------------------------
     public static void MenuProfesionales()
     {
@@ -311,7 +352,9 @@ class Program
     //main
     public static void Main(string[] args)
     {
-        int opcion = 0;
+    	
+    	
+    	int opcion = 0;
 
         while (opcion != 5)
         {

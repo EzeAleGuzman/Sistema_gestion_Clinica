@@ -37,7 +37,7 @@ namespace Clinica
 			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Pacientes.csv"));
 			string nuevaLinea = string.Format("{0};{1};{2};{3}",nombreCompleto, DNI, edad, obraSocial);
 			File.AppendAllText(path, Environment.NewLine + nuevaLinea);
-			Console.WriteLine("Objeto Almacenado en base de datos");
+			
 		}
 		
 		//Para poder visualizar la clase

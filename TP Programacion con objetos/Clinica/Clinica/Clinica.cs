@@ -59,6 +59,8 @@ namespace Clinica
 		    return lista;
 		}
 		
+		//private void Eliminarpacientebase()
+		
 		public void MostrarPacientes(List<Paciente> pacientes)
 		{
 			foreach (Paciente p in pacientes)
