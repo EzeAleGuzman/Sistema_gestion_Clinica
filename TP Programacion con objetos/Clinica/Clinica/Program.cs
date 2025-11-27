@@ -313,7 +313,7 @@ class Program
             		AgregarArea();
             		break;
                 case 3: 
-            		Console.WriteLine("Eliminando área..."); 
+            		EliminarArea();
             		break;
                 case 4: 
             		Console.WriteLine("Las areas de la clinica son:");
@@ -336,6 +336,12 @@ class Program
     archivos.AgregarRegistro(archivos.areas, archivos.GenerarId(archivos.areas) +";" + Console.ReadLine().ToLower());
     Console.WriteLine("Agregando área...");
     
+    }
+    
+    public static void EliminarArea(){
+    	Console.WriteLine("Por favor ponga el ed del Area");
+    	archivos.EliminarRegistro(archivos.areas, Console.ReadLine().ToLower());
+    	Console.WriteLine("Eliminando Area...");
     }
 
     public static void BuscarArea()

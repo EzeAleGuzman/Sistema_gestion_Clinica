@@ -16,7 +16,8 @@ namespace Clinica
 	/// </summary>
 	/// 
 	
-	
+	using System.Linq;
+
 	public class ManejoArchivos
 	{
 		public string pacientes { get; private set; }
@@ -99,6 +100,33 @@ namespace Clinica
             sw.WriteLine(registro);
         	}
    		}
+        
+        public void EliminarRegistro(string path, String index)
+   		{
+        	var lineas = LeerCsv(path);
+        	if (int.Parse(index) < 0 || int.Parse(index) >= lineas.Count){
+            	throw new Exception("Índice fuera de rango al borrar registro.");
+        	}
+        	lineas.RemoveAt(int.Parse(index));
+
+        SobrescribirArchivo(path, lineas);
+    	}
+        
+        
+        public void SobrescribirArchivo(string path, List<string[]> datos)
+    	{
+        string encabezado = File.ReadLines(path).First();
+
+        using (StreamWriter sw = new StreamWriter(path, false))
+        {
+            	sw.WriteLine(encabezado);
+            	foreach (var fila in datos)
+           	 	{
+                	sw.WriteLine(string.Join(";", fila));
+            	}
+        	}
+    	}
+        
         
         
 		
