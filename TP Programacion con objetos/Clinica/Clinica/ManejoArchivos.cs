@@ -19,6 +19,11 @@ namespace Clinica
 	
 	public class ManejoArchivos
 	{
+		public string pacientes { get; private set; }
+    	public string profesionales { get; private set; }
+   	 	public string areas { get; private set; }
+    	public string consultas { get; private set; }
+		
 		
 		public ManejoArchivos()
 		{		
@@ -31,10 +36,10 @@ namespace Clinica
         if (!Directory.Exists(carpetaClinica))
             Directory.CreateDirectory(carpetaClinica);
 
-        string pacientes = Path.Combine(carpetaClinica, "Pacientes.csv");
-        string profesionales = Path.Combine(carpetaClinica, "Profesionales.csv");
-        string areas = Path.Combine(carpetaClinica, "Areas.csv");
-        string consultas = Path.Combine(carpetaClinica, "Consultas.csv");
+        pacientes = Path.Combine(carpetaClinica, "Pacientes.csv");
+        profesionales = Path.Combine(carpetaClinica, "Profesionales.csv");
+        areas = Path.Combine(carpetaClinica, "Areas.csv");
+        consultas = Path.Combine(carpetaClinica, "Consultas.csv");
 
         if (File.Exists(pacientes) && File.Exists(profesionales) && File.Exists(areas))
         {

@@ -25,8 +25,9 @@ class Program
             int n;
 
             if (int.TryParse(input, out n))
+            {
                 return n;
-
+            }
             Console.WriteLine("Opción inválida. Ingrese un número:");
         }
     }
@@ -309,8 +310,7 @@ class Program
             		BuscarArea(); 
             		break;
                 case 2: 
-            		Console.WriteLine("Agregando área...");
-            		
+            		AgregarArea();
             		break;
                 case 3: 
             		Console.WriteLine("Eliminando área..."); 
@@ -329,6 +329,13 @@ class Program
             Console.WriteLine("\nPresione una tecla para continuar...");
             Console.ReadKey();
         }
+    }
+    
+    public static void AgregarArea(){
+    Console.WriteLine("Por favor ponga el nombre del Area");
+    archivos.AgregarRegistro(archivos.areas, archivos.GenerarId(archivos.areas) +";" + Console.ReadLine().ToLower());
+    Console.WriteLine("Agregando área...");
+    
     }
 
     public static void BuscarArea()
@@ -357,10 +364,17 @@ class Program
 
             switch (op)
             {
-                case 1: Console.WriteLine("Mostrando turnos..."); break;
-                case 2: Console.WriteLine("Mostrando médicos..."); break;
-                case 3: return;
-                default: Console.WriteLine("Opción inválida"); break;
+                case 1: 
+            		Console.WriteLine("Mostrando turnos...");
+                	break;
+                case 2: 
+                	Console.WriteLine("Mostrando médicos..."); 
+                	break;
+                case 3: 
+                	return;
+                default: 
+                	Console.WriteLine("Opción inválida"); 
+                	break;
             }
 
             Console.WriteLine("\nPresione una tecla para continuar...");
@@ -373,9 +387,7 @@ class Program
     
     //main
     public static void Main(string[] args)
-    {
-    	
-    	
+    {    	
     	int opcion = 0;
 
         while (opcion != 5)
@@ -397,7 +409,8 @@ class Program
             		break;
                 case 4: 
             		Console.WriteLine("Simulando día..."); 
-            		Console.ReadKey(); break;
+            		Console.ReadKey(); 
+            		break;
                 case 5: 
             		Console.WriteLine("Saliendo..."); 
             		break;
