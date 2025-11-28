@@ -1,11 +1,61 @@
-DNI;IdProfesional;TipoConsulta;Prioridad;Duracion;Costo;Fecha;Estado
-48201934;1;Odontologia;true;30;4500;20/05/2025;false
-39548210;3;Cirugia;false;60;12000;20/05/2025;true
-51372940;2;Odontologia;true;20;3000;20/05/2025;false
-40283719;4;Psicologia;true;45;6500;20/05/2025;false
-36749281;1;Odontologia;false;40;5000;20/05/2025;true
-48201934;3;Cirugia;true;90;15000;20/05/2025;false
-39548210;2;Odontologia;false;25;3500;20/05/2025;false
-51372940;4;Psicologia;true;50;6000;20/05/2025;true
-40283719;1;Odontologia;true;35;4800;20/05/2025;false
-36749281;2;Pediatria;false;15;2800;20/05/2025;false
+DNI;IdProfesional;TipoConsulta;Prioridad;Duracion;Costo;Estado
+3516145;1;clinico;no urgente;30;5000;true
+34931575;1;clinico;urgente;30;5000;true
+12345678;1;clinico;no urgente;30;5000;true
+23456789;1;clinico;no urgente;30;5000;true
+34567890;1;clinico;urgente;30;5000;true
+45678901;1;clinico;no urgente;30;5000;true
+56789012;1;clinico;urgente;30;5000;true
+67890123;1;clinico;no urgente;30;5000;true
+78901234;1;clinico;urgente;30;5000;true
+89012345;1;clinico;no urgente;30;5000;true
+90123456;2;clinico;no urgente;30;5000;true
+91234567;2;clinico;no urgente;30;5000;true
+3516145;2;clinico;urgente;30;5000;true
+34931575;2;clinico;no urgente;30;5000;true
+12345678;2;clinico;no urgente;30;5000;true
+23456789;2;clinico;urgente;30;5000;true
+34567890;2;clinico;no urgente;30;5000;true
+45678901;2;clinico;no urgente;30;5000;true
+56789012;2;clinico;urgente;30;5000;true
+67890123;2;clinico;no urgente;30;5000;true
+34567890;3;especialista;no urgente;45;8500;true
+45678901;3;especialista;urgente;45;8500;true
+56789012;3;especialista;no urgente;45;8500;true
+67890123;3;especialista;urgente;45;8500;true
+78901234;3;especialista;no urgente;45;8500;true
+89012345;3;especialista;urgente;45;8500;true
+90123456;4;especialista;urgente;45;8500;true
+91234567;4;especialista;no urgente;45;8500;true
+3516145;4;especialista;no urgente;45;8500;true
+34931575;4;especialista;urgente;45;8500;true
+12345678;4;especialista;no urgente;45;8500;true
+23456789;4;especialista;urgente;45;8500;true
+34567890;3;especialista;no urgente;45;8500;false
+45678901;3;especialista;no urgente;45;8500;false
+56789012;4;especialista;urgente;45;8500;false
+67890123;4;especialista;no urgente;45;8500;false
+78901234;3;especialista;urgente;45;8500;false
+89012345;4;especialista;no urgente;45;8500;false
+90123456;3;especialista;urgente;45;8500;false
+91234567;4;especialista;urgente;45;8500;false
+90123456;5;emergentologo;urgente;20;10000;true
+91234567;5;emergentologo;urgente;20;10000;true
+3516145;5;emergentologo;urgente;20;10000;true
+34931575;5;emergentologo;no urgente;20;10000;true
+12345678;5;emergentologo;urgente;20;10000;true
+23456789;5;emergentologo;no urgente;20;10000;true
+34567890;5;emergentologo;urgente;20;10000;true
+45678901;5;emergentologo;urgente;20;10000;true
+56789012;6;emergentologo;no urgente;20;10000;true
+67890123;6;emergentologo;urgente;20;10000;true
+78901234;6;emergentologo;urgente;20;10000;true
+89012345;6;emergentologo;no urgente;20;10000;true
+90123456;6;emergentologo;urgente;20;10000;true
+91234567;6;emergentologo;no urgente;20;10000;true
+3516145;6;emergentologo;urgente;20;10000;true
+34931575;6;emergentologo;urgente;20;10000;true
+12345678;5;emergentologo;urgente;20;10000;false
+23456789;5;emergentologo;no urgente;20;10000;false
+34567890;6;emergentologo;urgente;20;10000;false
+45678901;6;emergentologo;urgente;20;10000;false

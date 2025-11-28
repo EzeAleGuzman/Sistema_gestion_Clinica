@@ -1,5 +1,7 @@
-Id;Nombre;Tipo;Honorarios;MaxPacientes
-1;Jorge;especialista;8500;6
-2;Jorge;especialista;8500;6
-3;Lucas;especialista;8500;6
-4;ezequiel;especialista;8500;6
+Id;Nombre;Tipo;tiempoPorConsulta;Honorarios;MaxPacientes1;asdasd
+1;Carlos Perez;clinico;30;5000;10
+2;Mariana Diaz;clinico;30;5000;10
+3;Laura Gomez;especialista;45;8500;6
+4;Santiago Medina;especialista;45;8500;6
+5;Ana Torres;emergentologo;20;10000;8
+6;Jorge Romero;emergentologo;20;10000;8

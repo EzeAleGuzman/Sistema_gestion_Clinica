@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 
 namespace Clinica
 {
@@ -15,6 +16,7 @@ class Program
 	
 	static ManejoArchivos archivos= new ManejoArchivos();
 	static Clinica cli = new Clinica(archivos);
+
 	
 	// Revisa el valor para revisar si es valido (lo hice mas que nada por el null)
     static int RevisarOpcion()
@@ -54,7 +56,8 @@ class Program
         Console.WriteLine("2. Agregar paciente");
         Console.WriteLine("3. Eliminar paciente");
         Console.WriteLine("4. Ver Listado de pacientes");
-        Console.WriteLine("5. Volver");
+        Console.WriteLine("5. Editar Paciente");
+        Console.WriteLine("6. volver");
         Console.Write("Seleccione una opción: ");
     }
 
@@ -64,7 +67,8 @@ class Program
         Console.WriteLine("1. Buscar profesional");
         Console.WriteLine("2. Agregar profesional");
         Console.WriteLine("3. Eliminar profesional");
-        Console.WriteLine("4. Volver");
+        Console.WriteLine("4. Ver Profesionales");
+        Console.WriteLine("5. Volver");
         Console.Write("Seleccione una opción: ");
     }
 
@@ -134,7 +138,10 @@ class Program
                 case 4:
                 	VerListaPacientes();
                 	break;
-                case 5: 
+                case 5:
+                	EditarPaciente();
+                	break;
+                case 6: 
                 	return;
                 default: 
                 	Console.WriteLine("Opción inválida"); 
@@ -222,6 +229,116 @@ class Program
     		}
     	}
     }
+    
+    public static void EditarPaciente()
+	{
+	    Console.WriteLine("Ingrese DNI del paciente a editar: ");
+	    string dniTexto = Console.ReadLine();
+	    int dniBuscado;
+	
+	    if (!int.TryParse(dniTexto, out dniBuscado))
+	    {
+	        Console.WriteLine("DNI inválido.");
+	        Console.WriteLine("\nPresione una tecla para continuar...");
+	        Console.ReadKey();
+	        return;
+	    }
+	
+	    Paciente encontrado = null;
+	
+	    // Buscar en la lista de pacientes de la clínica
+	    foreach (Paciente p in cli.pacientes)
+	    {
+	        if (p.DNI == dniBuscado)
+	        {
+	            encontrado = p;
+	            break;
+	        }
+	    }
+	
+	    if (encontrado == null)
+	    {
+	        Console.WriteLine("No existe un paciente con ese DNI.");
+	        Console.WriteLine("\nPresione una tecla para continuar...");
+	        Console.ReadKey();
+	        return;
+	    }
+	
+	    Console.WriteLine("\nPaciente encontrado:");
+	    Console.WriteLine("Nombre: " + encontrado.nombreCompleto);
+	    Console.WriteLine("DNI: " + encontrado.DNI);
+	    Console.WriteLine("Edad: " + encontrado.edad);
+	    Console.WriteLine("Obra social: " + encontrado.obraSocial);
+	
+	    int op = 0;
+	    while (op != 5)
+	    {
+	        Console.WriteLine("\n¿Qué desea editar?");
+	        Console.WriteLine("1) Nombre");
+	        Console.WriteLine("2) Edad");
+	        Console.WriteLine("3) Obra social");
+	        Console.WriteLine("4) DNI");
+	        Console.WriteLine("5) Volver");
+	
+	        int.TryParse(Console.ReadLine(), out op);
+	
+	        switch (op)
+	        {
+	            case 1:
+	                Console.Write("Nuevo nombre: ");
+	                string nuevoNombre = Console.ReadLine();
+	                encontrado.nombreCompleto = nuevoNombre;
+	                Console.WriteLine("Nombre actualizado.");
+	                break;
+	
+	            case 2:
+	                Console.Write("Nueva edad: ");
+	                int nuevaEdad;
+	                if (int.TryParse(Console.ReadLine(), out nuevaEdad))
+	                {
+	                    encontrado.edad = nuevaEdad;
+	                    Console.WriteLine("Edad actualizada.");
+	                }
+	                else
+	                {
+	                    Console.WriteLine("Valor inválido.");
+	                }
+	                break;
+	
+	            case 3:
+	                Console.Write("Nueva obra social: ");
+	                string nuevaObra = Console.ReadLine();
+	                encontrado.obraSocial = nuevaObra;
+	                Console.WriteLine("Obra social actualizada.");
+	                break;
+	
+	            case 4:
+	                Console.Write("Nuevo DNI: ");
+	                int nuevoDNI;
+	                if (int.TryParse(Console.ReadLine(), out nuevoDNI))
+	                {
+	                    encontrado.DNI = nuevoDNI;
+	                    Console.WriteLine("DNI actualizado.");
+	                }
+	                else
+	                {
+	                    Console.WriteLine("Valor inválido.");
+	                }
+	                break;
+	
+	            case 5:
+	                Console.WriteLine("Volviendo al menú...");
+	                break;
+	
+	            default:
+	                Console.WriteLine("Opción inválida.");
+	                break;
+	        }
+	    }
+
+    Console.WriteLine("\nPresione una tecla para continuar...");
+    Console.ReadKey();
+}
     //PROFESIONAL---------------------------------------------------------------
     public static void MenuProfesionales()
     {
@@ -235,9 +352,10 @@ class Program
             switch (op)
             {
                 case 1: BuscarProfesional(); break;
-                case 2: Console.WriteLine("Agregando profesional..."); break;
-                case 3: Console.WriteLine("Eliminando profesional..."); break;
-                case 4: return;
+                case 2: AgregarProfesional(); break;
+                case 3: EliminarProfesional(); break;
+                case 4: VerProfesionales(); break;
+                case 5: return;
                 default: Console.WriteLine("Opción inválida"); break;
             }
 
@@ -245,25 +363,38 @@ class Program
             Console.ReadKey();
         }
     }
+    
+    
 
+    //busca en la lista de profesionales y compara por nombre(Es mas facil xd...)
     public static void BuscarProfesional()
     {
-        Console.Write("Ingrese id del profesional: ");
-        string id = Console.ReadLine();
+        Console.WriteLine("Ingrese nombre del profesional: ");
+        string nombre = Console.ReadLine();
+        nombre = nombre.ToLower();
         
-        
-		//Profesional test
-        bool encontrado = id == "123";
+         Profesional encontrado = null;
 
-        if (!encontrado)
-        {
-            Console.WriteLine("No existe un profesional con esa id.");
-            return;
-        }
+	  
+	    foreach (Profesional p in cli.profesionales)
+	    {
+	        if (p.nombre.ToLower() == nombre)
+	        {
+	            encontrado = p;
+	            break; 
+	        }
+	    }
+	
+	    if (encontrado == null)
+	    {
+	        Console.WriteLine("No existe un profesional con ese nombre.");
+	        Console.WriteLine("\nPresione una tecla para continuar...");
+	        Console.ReadKey();
+	        return;
+	    }
+	
+	    Console.WriteLine(encontrado);
 
-        Console.WriteLine("\nProfesional encontrado:");
-        Console.WriteLine("Nombre: Dra. Ana Torres");
-        Console.WriteLine("Especialidad: Pediatría\n");
 
         int op = 0;
         while (op != 3)
@@ -291,7 +422,59 @@ class Program
         }
     }
 
-
+    public static void AgregarProfesional(){
+    	Console.WriteLine("Nombre del Profesional");
+    	string nombre = Console.ReadLine();
+    	Console.WriteLine("Tipo de Profesional (Especialista-Clinico-Emergentologo)");
+    	string tipo = Console.ReadLine();
+    	tipo= tipo.ToLower();
+    	if (tipo == "especialista")
+    	{	
+    		Especialista esp = new Especialista(nombre,archivos);
+    		cli.profesionales.Add(esp);
+    	}
+    	else if (tipo == "clinico")
+    	{	
+    		MedicoClinico med = new MedicoClinico(nombre,archivos);
+    		cli.profesionales.Add(med);
+    	}
+    	else if (tipo == "emergentologo")
+    	{	
+    		Emergentologo emer = new Emergentologo(nombre,archivos);
+    		cli.profesionales.Add(emer);
+    	}
+    	else 
+    	{
+    		Console.WriteLine("Verifique el tipo de profesional");
+    	}
+    }
+    
+    //Metodo de eliminacion, trabaja con la lista que se crea al cargar los datos, no con el regiostros csv(Manejando la idea de la eliminacion logica)
+    public static void EliminarProfesional()
+    {
+    	Console.WriteLine("Ingrese nombre de profesional a eliminar");
+    	string nombre = Console.ReadLine();
+    	nombre = nombre.ToLower();
+    	
+    	foreach (Profesional p in cli.profesionales)
+    	{
+    		if (p.nombre == nombre)
+    		{
+    			cli.profesionales.Remove(p);
+    		}
+    	}
+    }
+    
+    public static void VerProfesionales()
+    {
+    	foreach (Profesional p in cli.profesionales)
+    	{
+    		if (cli.profesionales != null )
+    		{
+    			Console.WriteLine(p);
+    		}
+    	}
+    }
 
     ///ÁREA--------------------------------------------------------------------------
     public static void MenuAreas()
@@ -340,8 +523,15 @@ class Program
     
     public static void EliminarArea(){
     	Console.WriteLine("Por favor ponga el ed del Area");
+    	try {
     	archivos.EliminarRegistro(archivos.areas, Console.ReadLine().ToLower());
     	Console.WriteLine("Eliminando Area...");
+    	}
+    	catch (Exception ex) {
+    		Console.WriteLine("ocurrio un error: "+ ex.Message);
+    	}
+    	
+    	
     }
 
     public static void BuscarArea()
@@ -389,11 +579,142 @@ class Program
     }
 
 
-  
+    public static  void SimularDia()
+{
+    Console.WriteLine("\n=== SIMULACION DEL DIA ===\n");
+
+    // Limpia listas por si se simula mas de una vez
+    foreach (Profesional prof in cli.profesionales)
+    {
+        prof.listadoAtencion.Clear();
+        prof.listadoConsultasPendientes.Clear();
+    }
+
+    // 1) Asignar cada consulta a su profesional
+    foreach (Consulta c in cli.consultas)
+    {
+        c.profesional.listadoConsultasPendientes.Add(c);
+    }
+
+    // 2) Ordenar por prioridad
+    foreach (Profesional prof in cli.profesionales)
+    {
+        prof.listadoConsultasPendientes.Sort((a, b) =>
+        {
+            int pa = a.prioridad == "urgente" ? 0 : 1;
+            int pb = b.prioridad == "urgente" ? 0 : 1;
+            return pa.CompareTo(pb);
+        });
+    }
+
+    // 3) Atender segun limite diario
+    foreach (Profesional prof in cli.profesionales)
+    {
+        Console.WriteLine(string.Format(
+            "\nProfesional: {0} (ID {1})",
+            prof.nombre,
+            prof.Id
+        ));
+
+        Console.WriteLine(string.Format("Puede atender: {0} pacientes", prof.maxPacientesDia));
+        Console.WriteLine(string.Format("Consultas asignadas: {0}", prof.listadoConsultasPendientes.Count));
+
+        int atendidos = 0;
+
+        foreach (Consulta c in prof.listadoConsultasPendientes)
+        {
+            if (atendidos < prof.maxPacientesDia)
+            {
+                c.realizada = true;
+                prof.listadoAtencion.Add(c);
+                atendidos++;
+            }
+            else
+            {
+                c.realizada = false;
+            }
+        }
+
+        Console.WriteLine(string.Format("Atendidas: {0}", prof.listadoAtencion.Count));
+        Console.WriteLine(string.Format("Pendientes: {0}", prof.listadoConsultasPendientes.Count - prof.listadoAtencion.Count));
+    }
+
+} 
+    
+		    public static void MostrarResultadosDelDia()
+		{
+		    Console.WriteLine("\n===== RESULTADOS DEL DÍA =====\n");
+		
+		    int totalAtendidos = 0;
+		    int totalTiempo = 0;
+		    double costoTotal = 0;
+		
+		    Console.WriteLine("=== Detalle por Profesional ===\n");
+		
+		    foreach (Profesional prof in cli.profesionales)
+		    {
+		        int atendidas = prof.listadoAtencion.Count;
+		        int pendientes = prof.listadoConsultasPendientes.Count;
+		
+		        // Tiempo total del profesional
+		        int tiempoProfesional =+ prof.tiempoConsulta;
+		
+		        // Costo del profesional (honorarios * atendidas)
+		        double costoProfesional = atendidas * prof.honorarios;
+		
+		        // Ocupación diaria
+		        double ocupacion = (double)atendidas / prof.maxPacientesDia * 100;
+		
+		        // Acumular para reporte general
+		        totalAtendidos += atendidas;
+		        totalTiempo += tiempoProfesional;
+		        costoTotal += costoProfesional;
+		
+		        // Mostrar profesional
+		        Console.WriteLine(string.Format("Profesional: {0} (ID {1})", prof.nombre, prof.Id));
+		        Console.WriteLine("-----------------------------------");
+		        Console.WriteLine(string.Format("Atendidas: {0}", atendidas));
+		        Console.WriteLine(string.Format("Pendientes: {0}", pendientes));
+		        Console.WriteLine(string.Format("Tiempo total trabajado: {0} min", tiempoProfesional));
+		        Console.WriteLine(string.Format("Costo generado: {0}", costoProfesional));
+		        Console.WriteLine(string.Format("Ocupación del día: {0:0.00}%", ocupacion));
+		        Console.WriteLine();
+		    }
+		
+		    Console.WriteLine("\n=== Resumen General del Día ===\n");
+		
+		    Console.WriteLine(string.Format("Total de pacientes atendidos: {0}", totalAtendidos));
+		
+		    double promedio = totalAtendidos > 0 ? (double)totalTiempo / totalAtendidos : 0;
+		    Console.WriteLine(string.Format("Promedio de tiempo por consulta: {0:0.0} min", promedio));
+		
+		    Console.WriteLine(string.Format("Costo operativo total: {0}", costoTotal));
+		
+		    Console.WriteLine("\n=== Listado de Pacientes Pendientes ===\n");
+		
+		    foreach (Profesional prof in cli.profesionales)
+		    {
+		        foreach (Consulta c in prof.listadoConsultasPendientes)
+					{
+				    if (!c.realizada)
+				    {
+				        Console.WriteLine(string.Format(
+				            "Pendiente: {0} - Prioridad: {1}",
+				            c.paciente.nombreCompleto,
+				            c.prioridad
+				        ));
+				    }
+		    }
+		
+		    
+		}
+		    Console.WriteLine("\n===== FIN DEL REPORTE =====");
+		    }
     
     //main
     public static void Main(string[] args)
-    {    	
+    {   
+    	Clinica cli = new Clinica(archivos);
     	int opcion = 0;
 
         while (opcion != 5)
@@ -413,8 +734,9 @@ class Program
                 case 3: 
             		MenuAreas(); 
             		break;
-                case 4: 
-            		Console.WriteLine("Simulando día..."); 
+            	case 4:
+            		SimularDia();
+            		MostrarResultadosDelDia();
             		Console.ReadKey(); 
             		break;
                 case 5: 

@@ -17,18 +17,15 @@ namespace Clinica
 	/// </summary>
 	public class Especialista:Profesional
 	{
-		public int Id;
-		public double honorarios = 8500;
-		public int maxPacientesDia = 6;
-		public string tipo = "especialista";
 		
-		public Especialista(string nombre, ManejoArchivos archivo, bool guardar = true):base(nombre)
+		
+		public Especialista(string nombre, ManejoArchivos archivo, bool guardar = true):base(nombre, archivo)
 		{	
-			string basePath = AppDomain.CurrentDomain.BaseDirectory;
-			string projectPath = Path.Combine(basePath, @"..\..");
-			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
-			//Genera el Id por medio de la funcion generadorA
-			Id = archivo.GenerarId(path);
+			
+			this.honorarios = 8500;
+			this.tiempoConsulta = 45;
+			this.maxPacientesDia = 6;
+			this.tipo = "especialista";
 			if (guardar)
 				AgregarProfesionalBD(archivo);
 		}
@@ -51,7 +48,7 @@ namespace Clinica
 			string basePath = AppDomain.CurrentDomain.BaseDirectory;
 			string projectPath = Path.Combine(basePath, @"..\..");
 			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
-			string nuevaLinea = string.Format("{0};{1};{2};{3};{4}", Id, nombre, tipo, honorarios, maxPacientesDia);
+			string nuevaLinea = string.Format("{0};{1};{2};{3};{4};{5}", Id, nombre, tipo,tiempoConsulta , honorarios, maxPacientesDia);
 			File.AppendAllText(path, Environment.NewLine + nuevaLinea);
 			//eS sOLO UNA BANDERA
 			Console.WriteLine("Objeto Almacenado en base de datos");
@@ -60,7 +57,7 @@ namespace Clinica
 		//Para poder visualizar la clase
 		public override string ToString()
 		{
-			return string.Format("Profesional \n Nombre={0}\n honorarios={1}\n maxPacientesDia={2}\n Especialidad={3}\n ", nombre, honorarios, maxPacientesDia, tipo);
+			return string.Format("Profesional \n Nombre={0}\n honorarios={1}\n tiempoPorConsulta={2}\n maxPacientesDia={3}\n Especialidad={4}\n ", nombre, honorarios, tiempoConsulta, maxPacientesDia, tipo);
 		}
 	}
 }

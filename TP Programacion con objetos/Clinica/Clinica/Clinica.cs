@@ -21,8 +21,7 @@ namespace Clinica
 		public List<Paciente> pacientes;
 	    public List<Profesional> profesionales;
 	    public List<Area> areas;
-	    /*public List<Consulta> consultas*/ 
-
+	    public List<Consulta> consultas;
     	private ManejoArchivos archivos;
 		
 		public Clinica(ManejoArchivos archivos)
@@ -32,6 +31,7 @@ namespace Clinica
 			pacientes = CargarPacientes();
 			profesionales = CargarProfesionales();
 			areas = CargarAreas();
+			consultas = CargarConsultas();
 			
 		}
 		
@@ -77,36 +77,51 @@ namespace Clinica
 		//Metodos Gestion Lista Profesionales
 		public List<Profesional> CargarProfesionales()
 		{
-			 var lista = new List<Profesional>();
+		    var lista = new List<Profesional>();
 		    string basePath = AppDomain.CurrentDomain.BaseDirectory;
-			string projectPath = Path.Combine(basePath, @"..\..");
-			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
+		    string projectPath = Path.Combine(basePath, @"..\..");
+		    string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
 		    var filas = archivos.LeerCsv(path);
 		
 		    foreach (var f in filas)
 		    {
-		    	//Dependiendo el tipo de profesional invoco a distinto constructor
-		    	if (f[2] == "espacialista")
-		    	{
-		    		lista.Add(new Especialista(
-		    			nombre : f[1],
-		    			archivo: archivos,
-		    			guardar: false));
-		    	}
-		    	else if (f[2] == "emergentologo")
-		    	{
-		    		lista.Add(new Emergentologo(
-		    			nombre : f[1],
-		    			archivo: archivos,
-		    			guardar: false));
-		    	}
-		    	else 
-		    	{
-		    		lista.Add(new MedicoClinico(
-		    			nombre : f[1],
-		    			archivo: archivos,
-		    			guardar: false));
-		    	}
+		        // f[0] = ID
+		        // f[1] = Nombre
+		        // f[2] = Tipo
+		        // f[3] = tiempo
+		        // f[4] = honorarios
+		        // f[5] = maxPacientesDia
+		
+		        int id = int.Parse(f[0]);
+		        string nombre = f[1];
+		        string tipo = f[2].ToLower();
+		
+		        Profesional p = null;
+		
+		       
+		        if (tipo == "especialista")
+		        {
+		            p = new Especialista(nombre, archivos, false);
+		        }
+		        else if (tipo == "emergentologo")
+		        {
+		            p = new Emergentologo(nombre, archivos, false);
+		        }
+		        else // clínico
+		        {
+		            p = new MedicoClinico(nombre, archivos, false);
+		        }
+		
+		        // *** LO MÁS IMPORTANTE ***
+		        // Sobreescribimos el ID generado automáticamente
+		        p.Id = id;
+		
+		        // Cargar los datos restantes del CSV
+		        p.tiempoConsulta = int.Parse(f[3]);
+		        p.honorarios = double.Parse(f[4]);
+		        p.maxPacientesDia = int.Parse(f[5]);
+		
+		        lista.Add(p);
 		    }
 		
 		    return lista;
@@ -158,14 +173,80 @@ namespace Clinica
 			}
 		}
 		
-		public void BuscarPaciente(List<Paciente> list, int DNI)
+		public List<Consulta> CargarConsultas()
 		{
-			foreach (Paciente p in list)
-			{
-				if (p.DNI == DNI)
-				{
-				}
-			}
+		    var lista = new List<Consulta>();
+		
+		    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+		    string projectPath = Path.Combine(basePath, @"..\..");
+		    string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Consultas.csv"));
+		
+		    var filas = archivos.LeerCsv(path);
+		
+		    foreach (var f in filas)
+		    {
+		        // ----------------------------
+		        // 1. Buscar PACIENTE
+		        // ----------------------------
+		        int dni = int.Parse(f[0]);
+		        Paciente pacienteEncontrado = null;
+		
+		        foreach (Paciente pac in pacientes)
+		        {
+		            if (pac.DNI == dni)
+		            {
+		                pacienteEncontrado = pac;
+		                break;
+		            }
+		        }
+		        if (pacienteEncontrado == null)
+		            continue;
+		
+		        // ----------------------------
+		        // 2. Buscar PROFESIONAL por ID
+		        // ----------------------------
+		        int idProfesional = int.Parse(f[1]);
+		        Profesional profesionalEncontrado = null;
+		
+		        foreach (Profesional prof in profesionales)
+		        {
+		            if (prof.Id == idProfesional)
+		            {
+		                profesionalEncontrado = prof;
+		                break;
+		            }
+		        }
+		        if (profesionalEncontrado == null)
+		            continue;
+		
+		        // ----------------------------
+		        // 3. Crear consulta
+		        // ----------------------------
+		        string prioridad = f[3];
+		
+		        Consulta consulta = new Consulta(
+		            pacienteEncontrado,
+		            prioridad,
+		            profesionalEncontrado
+		        );
+		
+		        consulta.duracionMinutos = profesionalEncontrado.tiempoConsulta;
+		        consulta.costo = profesionalEncontrado.honorarios;
+		        consulta.realizada = bool.Parse(f[6]);
+		
+		        lista.Add(consulta);
+		    }
+		
+		    return lista;
 		}
+
+		
+		public void MostrarConsultas()
+	    {
+			foreach (Consulta c in consultas)
+	            {
+	            	Console.WriteLine(c); 
+	            }
+	    }
 	}
 }

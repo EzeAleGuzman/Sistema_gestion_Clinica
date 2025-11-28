@@ -53,11 +53,11 @@ namespace Clinica
             using (StreamWriter sw = File.CreateText(pacientes))
                    {
                    		//Creo Los Encabezados del Archivo de Pacientes
-                   		sw.WriteLine("NombreCompleto;DNI;Edad;ObraSocial");
+                   		sw.Write("NombreCompleto;DNI;Edad;ObraSocial");
                    }
             using (StreamWriter sw = File.CreateText(profesionales))
                    {
-                   		sw.WriteLine("Id;Nombre;Tipo;Honorarios;MaxPacientes");
+                   		sw.Write("Id;Nombre;Tipo;tiempoPorConsulta;Honorarios;MaxPacientes");
                    }
             using (StreamWriter sw = File.CreateText(areas))
                    {
@@ -65,7 +65,7 @@ namespace Clinica
                    }                   
             using (StreamWriter sw = File.CreateText(consultas))
 		           {
-		                sw.WriteLine("DNI;IdProfesional;TipoConsulta;Prioridad;Duracion;Costo;Fecha;Estado");
+		                sw.Write("DNI;IdProfesional;TipoConsulta;Prioridad;Duracion;Costo;Estado");
 		           }
         }
 		}
@@ -97,7 +97,7 @@ namespace Clinica
     	{
         	using (StreamWriter sw = File.AppendText(path))
         	{
-            sw.WriteLine(registro);
+            sw.Write(registro);
         	}
    		}
         

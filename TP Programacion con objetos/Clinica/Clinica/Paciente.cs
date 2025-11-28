@@ -46,14 +46,5 @@ namespace Clinica
 			return string.Format("Paciente \n NombreCompleto={0}\n DNI={1}\n Edad={2}\n ObraSocial={3}\n ", nombreCompleto, DNI, edad, obraSocial);
 		}
 
-		
-		//El metodo Puede mostrar los 2 tipos de consulta(Podriamos reutilizarlo en profesionales y llevarlo a un archivo de utilidades????
-		/*public void MostrarHistorialConsultas(List<Consulta> listaConsultas)
-		{
-			foreach (Consulta consulta in listaConsultas)
-			{
-				return
-			}
-		}*/
 	}
 }

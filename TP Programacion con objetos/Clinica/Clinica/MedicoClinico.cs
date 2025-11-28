@@ -18,18 +18,14 @@ namespace Clinica
 	public class MedicoClinico:Profesional
 	{
 		
-		public int Id;
-		public double honorarios = 5000;
-		public int maxPacientesDia = 10;
-		public string tipo = "clinico";
+	
 		
-		public MedicoClinico( string nombre, ManejoArchivos archivo, bool guardar = true):base(nombre)
+		public MedicoClinico( string nombre, ManejoArchivos archivo, bool guardar = true):base(nombre, archivo)
 		{	
-			string basePath = AppDomain.CurrentDomain.BaseDirectory;
-			string projectPath = Path.Combine(basePath, @"..\..");
-			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
-			//Genera el Id por medio de la funcion generadorA
-			Id = archivo.GenerarId(path);
+			this.honorarios = 5000;
+			this.tiempoConsulta = 30;
+			this.maxPacientesDia = 10;
+			this.tipo = "clinico";
 			if (guardar)
 				AgregarProfesionalBD(archivo);
 		}
@@ -50,7 +46,7 @@ namespace Clinica
 		//Para poder visualizar la clase
 		public override string ToString()
 		{
-			return string.Format("Profesional \n Nombre={0}\n honorarios={1}\n maxPacientesDia={2}\n Especialidad={3}\n ", nombre, honorarios, maxPacientesDia, tipo);
+			return string.Format("Profesional \n Nombre={0}\n honorarios={1}\n tiempoPorConsulta={2}\n maxPacientesDia={3}\n Especialidad={4}\n ", nombre, honorarios, tiempoConsulta, maxPacientesDia, tipo);
 		}
 
 			//funcion para almacenarlo en la base de datos
@@ -59,7 +55,7 @@ namespace Clinica
 			string basePath = AppDomain.CurrentDomain.BaseDirectory;
 			string projectPath = Path.Combine(basePath, @"..\..");
 			string path = Path.GetFullPath(Path.Combine(projectPath, "BaseDatos", "Profesionales.csv"));
-			string nuevaLinea = string.Format("{0};{1};{2};{3};{4}", Id, nombre, tipo, honorarios, maxPacientesDia);
+			string nuevaLinea = string.Format("{0};{1};{2};{3};{4};{5}", Id, nombre, tipo,tiempoConsulta, honorarios, maxPacientesDia);
 			File.AppendAllText(path, Environment.NewLine + nuevaLinea);
 			Console.WriteLine("Objeto Almacenado en base de datos");
 		}
