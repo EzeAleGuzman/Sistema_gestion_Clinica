@@ -183,56 +183,50 @@ namespace Clinica
 		
 		    var filas = archivos.LeerCsv(path);
 		
+		    // Ignorar cabecera
+		    if (filas.Count > 0 && filas[0][0].ToLower() == "dni")
+		        filas.RemoveAt(0);
+		
 		    foreach (var f in filas)
 		    {
-		        // ----------------------------
-		        // 1. Buscar PACIENTE
-		        // ----------------------------
+		        // 1. Buscar paciente
 		        int dni = int.Parse(f[0]);
 		        Paciente pacienteEncontrado = null;
-		
-		        foreach (Paciente pac in pacientes)
+		        foreach (Paciente p in pacientes)
 		        {
-		            if (pac.DNI == dni)
+		            if (p.DNI == dni)
 		            {
-		                pacienteEncontrado = pac;
-		                break;
+		                pacienteEncontrado = p;
+		                break; // ⚡ importante
 		            }
 		        }
-		        if (pacienteEncontrado == null)
-		            continue;
+		        if (pacienteEncontrado == null) continue;
 		
-		        // ----------------------------
-		        // 2. Buscar PROFESIONAL por ID
-		        // ----------------------------
+		        // 2. Buscar profesional
 		        int idProfesional = int.Parse(f[1]);
 		        Profesional profesionalEncontrado = null;
-		
-		        foreach (Profesional prof in profesionales)
+		        foreach (Profesional p in profesionales)
 		        {
-		            if (prof.Id == idProfesional)
+		            if (p.Id == idProfesional)
 		            {
-		                profesionalEncontrado = prof;
-		                break;
+		                profesionalEncontrado = p;
+		                break; // ⚡ importante
 		            }
 		        }
-		        if (profesionalEncontrado == null)
-		            continue;
+		        if (profesionalEncontrado == null) continue;
 		
-		        // ----------------------------
 		        // 3. Crear consulta
-		        // ----------------------------
-		        string prioridad = f[3];
-		
 		        Consulta consulta = new Consulta(
 		            pacienteEncontrado,
-		            prioridad,
+		            f[3],                 // prioridad
 		            profesionalEncontrado
 		        );
 		
-		        consulta.duracionMinutos = profesionalEncontrado.tiempoConsulta;
-		        consulta.costo = profesionalEncontrado.honorarios;
-		        consulta.realizada = bool.Parse(f[6]);
+		        // Sobrescribir con datos del CSV
+		        consulta.tipoConsulta = f[2];          
+		        consulta.duracionMinutos = int.Parse(f[4]);
+		        consulta.costo = double.Parse(f[5]);
+		        consulta.estado = bool.Parse(f[6]);
 		
 		        lista.Add(consulta);
 		    }
@@ -243,10 +237,13 @@ namespace Clinica
 		
 		public void MostrarConsultas()
 	    {
+			Console.WriteLine("Consultas cargadas: " + consultas.Count);
 			foreach (Consulta c in consultas)
 	            {
 	            	Console.WriteLine(c); 
 	            }
+			Console.WriteLine("Presiona cualquier tecla para salir...");
+			Console.ReadKey();
 	    }
 	}
 }

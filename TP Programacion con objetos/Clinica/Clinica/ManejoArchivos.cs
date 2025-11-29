@@ -126,9 +126,7 @@ namespace Clinica
             	}
         	}
     	}
-        
-        
-        
+            
 		
         //Esta funcion se utiliza para generar los id automaticos para los metodos de creacion de los objetos 
         public int GenerarId(string path)

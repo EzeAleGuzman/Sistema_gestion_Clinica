@@ -15,7 +15,7 @@ namespace Clinica
  		public string prioridad;         
         public int duracionMinutos;
         public double costo;
-        public bool realizada;
+        public bool estado;
 
         public Consulta(Paciente paciente, string prioridad, Profesional profesional)
         {
@@ -27,20 +27,23 @@ namespace Clinica
             this.duracionMinutos = profesional.tiempoConsulta;
             this.costo = profesional.honorarios;
 
-            this.realizada = false;
+            this.estado = false;
         }
 
-        public override string ToString()
-        {
-            return string.Format(
-                "Paciente: {0}, Profesional: {1} ({2}),prioridad:{4}, Costo: ${3}",
-                paciente.nombreCompleto,
-                profesional.Id,
-                tipoConsulta,
-                costo,
-                prioridad
-            );
-        }
+		public override string ToString()
+		{
+		    string estadoTexto = estado ? "Atendido" : "En espera";
+		
+		    return string.Format(
+		        "Paciente: {0}, Profesional: {1} ({2}), Prioridad: {3}, Costo: ${4}, Estado: {5}",
+		        paciente.nombreCompleto,
+		        profesional.nombre,
+		        tipoConsulta,
+		        prioridad,
+		        costo,
+		        estadoTexto
+		    );
+		}
         
 		public void AgregarConsultaBD(ManejoArchivos archivo)
 		{
@@ -55,7 +58,7 @@ namespace Clinica
 		        prioridad,           
 		        duracionMinutos,    
 		        costo,             
-		        realizada           
+		        estado          
 		    );
 		
 		    File.AppendAllText(path, Environment.NewLine + nuevaLinea);

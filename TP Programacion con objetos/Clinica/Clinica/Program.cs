@@ -133,7 +133,7 @@ class Program
             		AgregarPaciente();
                 	break;
                 case 3: 
-                	Console.WriteLine("Eliminando paciente..."); 
+                	EliminarPaciente();
                 	break;
                 case 4:
                 	VerListaPacientes();
@@ -159,10 +159,12 @@ class Program
     {
         Console.Write("Ingrese DNI del paciente: ");
         int dni = int.Parse(Console.ReadLine());
+        Paciente encontrado = null;
         foreach (Paciente p in cli.pacientes)
         {
         	if (p.DNI == dni)
         	{	
+        		encontrado = p;
         		Console.WriteLine(p);
         		   // Mostrar submenu
 		        int op = 0;
@@ -182,7 +184,10 @@ class Program
 		            
         		}
         	}
-        	else
+        	
+        }
+        if (encontrado == null)
+        {
         		Console.WriteLine("No EXiste este paciente en la base de datos");
         }
 
@@ -578,7 +583,9 @@ class Program
         }
     }
 
-
+	/// <summary>
+	/// Simulacion del dia------------------------------------------------------------
+	/// </summary>
     public static  void SimularDia()
 {
     Console.WriteLine("\n=== SIMULACION DEL DIA ===\n");
@@ -625,13 +632,13 @@ class Program
         {
             if (atendidos < prof.maxPacientesDia)
             {
-                c.realizada = true;
+                c.estado = true;
                 prof.listadoAtencion.Add(c);
                 atendidos++;
             }
             else
             {
-                c.realizada = false;
+                c.estado = false;
             }
         }
 
@@ -641,7 +648,7 @@ class Program
 
 } 
     
-		    public static void MostrarResultadosDelDia()
+	public static void MostrarResultadosDelDia()
 		{
 		    Console.WriteLine("\n===== RESULTADOS DEL DÍA =====\n");
 		
@@ -696,7 +703,7 @@ class Program
 		    {
 		        foreach (Consulta c in prof.listadoConsultasPendientes)
 					{
-				    if (!c.realizada)
+				    if (!c.estado)
 				    {
 				        Console.WriteLine(string.Format(
 				            "Pendiente: {0} - Prioridad: {1}",
@@ -741,6 +748,9 @@ class Program
             		break;
                 case 5: 
             		Console.WriteLine("Saliendo..."); 
+            		break;
+            	case 6:
+            		cli.MostrarConsultas();
             		break;
                 default: 
             		Console.WriteLine("Opción inválida"); 
