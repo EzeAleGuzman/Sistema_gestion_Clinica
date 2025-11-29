@@ -175,7 +175,7 @@ class Program
 		
 		            switch (op)
 		            {
-		                case 1: Console.WriteLine("Mostrando historial..."); break;
+		            	case 1:MostrarConsultasPendientes(dni); break;
 		                case 2: Console.WriteLine("Mostrando turnos..."); break;
 		                case 3: return;
 		                default: Console.WriteLine("Opción inválida"); break;
@@ -215,22 +215,26 @@ class Program
 
     public static void VerListaPacientes()
     {
+    	Console.Clear();
     	foreach (Paciente p in cli.pacientes)
     	{
     		Console.WriteLine(p);
     	}
+    	
     }
     
     public static void EliminarPaciente()
     {
     	Console.WriteLine("Ingrese Dni del paciente a eliminar");
     	int dni = int.Parse(Console.ReadLine());
-    	
+    	RevisarOpcion();
     	foreach (Paciente p in cli.pacientes)
     	{
     		if (p.DNI == dni)
     		{
     			cli.pacientes.Remove(p);
+    			Console.WriteLine("Paciente Eliminado");
+    			break;
     		}
     	}
     }
@@ -344,6 +348,21 @@ class Program
     Console.WriteLine("\nPresione una tecla para continuar...");
     Console.ReadKey();
 }
+    
+    public static void MostrarConsultasPendientes(int dni)
+    {
+    	
+    			foreach (Consulta c in cli.consultas)
+	    		{
+	    			if (dni == c.paciente.DNI &&	c.estado == true )
+	    			{
+	    					Console.WriteLine(c);
+	    			}
+	    		}
+    		
+    			
+    	//}
+    }
     //PROFESIONAL---------------------------------------------------------------
     public static void MenuProfesionales()
     {
@@ -664,7 +683,7 @@ class Program
 		        int pendientes = prof.listadoConsultasPendientes.Count;
 		
 		        // Tiempo total del profesional
-		        int tiempoProfesional =+ prof.tiempoConsulta;
+		        int tiempoProfesional =+ prof.tiempoConsulta * atendidas;
 		
 		        // Costo del profesional (honorarios * atendidas)
 		        double costoProfesional = atendidas * prof.honorarios;
@@ -676,6 +695,7 @@ class Program
 		        totalAtendidos += atendidas;
 		        totalTiempo += tiempoProfesional;
 		        costoTotal += costoProfesional;
+		       
 		
 		        // Mostrar profesional
 		        Console.WriteLine(string.Format("Profesional: {0} (ID {1})", prof.nombre, prof.Id));
