@@ -107,6 +107,10 @@ namespace Clinica
 		        {
 		            p = new Emergentologo(nombre, archivos, false);
 		        }
+				else if (tipo == "pediatra")
+		        {
+		            p = new Pediatra(nombre, archivos, false);
+		        }
 		        else // clínico
 		        {
 		            p = new MedicoClinico(nombre, archivos, false);
